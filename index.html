@@ -57,6 +57,13 @@ body::after{content:'';position:fixed;inset:0;opacity:.018;background:url("data:
 .hero-metric-val{font-family:var(--sf);font-size:2.2rem;font-weight:400;line-height:1.2}
 .hero-metric-lbl{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--fg3);margin-top:.15rem}
 .hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);animation:fadeUp .7s var(--ease) .7s both}
+.hero-cta{display:flex;align-items:center;gap:1rem;justify-content:center;margin-top:2.5rem;flex-wrap:wrap;animation:fadeUp .7s var(--ease) .65s both}
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.5rem;background:var(--ac);color:#fff;font-size:.85rem;font-weight:500;border-radius:100px;transition:all .3s var(--ease);letter-spacing:.01em}
+.btn-primary:hover{background:var(--acd);gap:.65rem;box-shadow:0 4px 16px rgba(26,107,66,.25)}
+.btn-primary svg{transition:transform .3s var(--ease)}
+.btn-primary:hover svg{transform:translateX(2px)}
+.btn-ghost{display:inline-flex;align-items:center;gap:.4rem;padding:.7rem 1.25rem;font-size:.85rem;font-weight:500;color:var(--fg2);border:1px solid var(--bd);border-radius:100px;transition:all .3s}
+.btn-ghost:hover{border-color:var(--ac);color:var(--ac)}
 .hero-scroll a{display:flex;flex-direction:column;align-items:center;gap:.4rem;font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--fg3);transition:color .3s}
 .hero-scroll a:hover{color:var(--ac)}
 .hero-scroll svg{animation:bob 2s ease-in-out infinite}
@@ -258,6 +265,10 @@ body::after{content:'';position:fixed;inset:0;opacity:.018;background:url("data:
       <div class="hero-metric"><div class="hero-metric-val">10</div><div class="hero-metric-lbl">Dashboards</div></div>
       <div class="hero-metric"><div class="hero-metric-val">6</div><div class="hero-metric-lbl">Asset Classes</div></div>
       <div class="hero-metric"><div class="hero-metric-val">15+</div><div class="hero-metric-lbl">Yrs Experience</div></div>
+    </div>
+    <div class="hero-cta">
+      <a href="#dashboards" class="btn-primary">Explore dashboards <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="#philosophy" class="btn-ghost">Read the philosophy</a>
     </div>
   </div>
   <div class="hero-scroll"><a href="#philosophy">Scroll<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a></div>
