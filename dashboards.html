@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboards & Philosophy — Zhenghao Phua, CFA</title>
+<meta name="description" content="10 interactive dashboards exploring systematic, rules-based investing — trend-following, breakout systems, portfolio construction, and risk defence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --fg:#141418;--fg2:#4a4a56;--fg3:#7a7a88;
+  --bg:#faf9f7;--bg2:#f3f1ec;--bgc:#fff;
+  --ac:#1a6b42;--acs:#e6f2eb;--acm:#2a9d62;--acd:#0d4f2e;
+  --gd:#b8963e;--gds:#faf5eb;
+  --bd:#e2e0da;--bdh:#cac7be;
+  --sf:'Newsreader',Georgia,serif;
+  --ss:'DM Sans',-apple-system,sans-serif;
+  --sm:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:var(--ss);color:var(--fg);background:var(--bg);line-height:1.65;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--acs);color:var(--acd)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 3rem;display:flex;align-items:center;justify-content:space-between;transition:all .5s var(--ease)}
+.nav.scrolled{background:rgba(250,249,247,.92);backdrop-filter:blur(24px) saturate(1.3);-webkit-backdrop-filter:blur(24px) saturate(1.3);border-bottom:1px solid var(--bd);padding:.85rem 3rem}
+.nav-name{font-family:var(--sf);font-size:1.15rem;font-weight:500;letter-spacing:-.02em}
+.nav-name span{color:var(--fg3);font-weight:400;font-size:.95rem;margin-left:.35rem}
+.nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center}
+.nav-links a{font-size:.8rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--fg3);transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--ac);transition:width .35s var(--ease)}
+.nav-links a:hover{color:var(--fg)}
+.nav-links a:hover::after{width:100%}
+.nav-links a.active{color:var(--fg)}
+.nav-links a.active::after{width:100%}
+.nav-toggle{display:none;cursor:pointer;background:none;border:none;padding:.5rem}
+.nav-toggle span{display:block;width:22px;height:1.5px;background:var(--fg);margin:5px 0;border-radius:1px;transition:all .3s}
+
+/* PAGE HEADER */
+.page-header{padding:8rem 3rem 3rem;max-width:1200px;margin:0 auto}
+.page-header h1{font-family:var(--sf);font-size:clamp(2.2rem,4vw,3.2rem);font-weight:400;line-height:1.12;letter-spacing:-.025em;margin-bottom:.75rem}
+.page-header h1 em{font-style:italic;color:var(--ac);font-weight:300}
+.page-header p{font-size:1.05rem;color:var(--fg2);max-width:560px;line-height:1.7}
+
+/* SHARED */
+.section-label{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);margin-bottom:.75rem;display:flex;align-items:center;gap:.75rem}
+.section-label::before{content:'';width:20px;height:1.5px;background:var(--ac)}
+.section-title{font-family:var(--sf);font-size:clamp(1.5rem,2.5vw,2rem);font-weight:400;line-height:1.15;letter-spacing:-.015em;margin-bottom:.4rem}
+.section-desc{font-size:.95rem;color:var(--fg2);max-width:480px;line-height:1.65}
+
+/* PHILOSOPHY */
+.philosophy{padding:3rem 3rem 5rem;max-width:1200px;margin:0 auto}
+.beliefs-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.belief{background:var(--bgc);border:1px solid var(--bd);border-radius:12px;padding:1.5rem 1.5rem;display:flex;gap:1rem;transition:all .35s var(--ease)}
+.belief:hover{border-color:var(--bdh);box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.belief-num{font-family:var(--sm);font-size:.62rem;color:var(--fg3);letter-spacing:.1em;flex-shrink:0;padding-top:.15rem}
+.belief h3{font-family:var(--sf);font-size:1.05rem;font-weight:400;color:var(--fg);line-height:1.3;margin-bottom:.35rem}
+.belief p{font-size:.82rem;line-height:1.6;color:var(--fg2)}
+.philosophy-link{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.5rem;font-size:.85rem;font-weight:500;color:var(--ac);transition:gap .3s var(--ease)}
+.philosophy-link:hover{gap:.75rem}
+.philosophy-link svg{width:15px;height:15px}
+
+/* DASHBOARDS */
+.sec{padding:5rem 3rem;max-width:1200px;margin:0 auto}
+.sec-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2rem;flex-wrap:wrap;gap:1rem}
+.sec-count{font-family:var(--sm);font-size:.75rem;color:var(--fg3)}
+.dash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.dash-grid-2{grid-template-columns:repeat(2,1fr);max-width:780px}
+
+/* CARD */
+.card{background:var(--bgc);border:1px solid var(--bd);border-radius:14px;padding:1.5rem;display:flex;flex-direction:column;transition:all .45s var(--ease);position:relative;overflow:hidden;cursor:pointer;text-decoration:none;color:inherit}
+.card::after{content:'';position:absolute;top:0;left:0;right:0;height:2.5px;background:linear-gradient(90deg,var(--ac),var(--acm));transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.card:hover{border-color:var(--bdh);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.05),0 2px 8px rgba(0,0,0,.03)}
+.card:hover::after{transform:scaleX(1)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.65rem}
+.card-icon{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.card-icon.g{background:var(--acs)}.card-icon.g svg{color:var(--ac)}
+.card-icon.o{background:var(--gds)}.card-icon.o svg{color:var(--gd)}
+.card-icon svg{width:15px;height:15px}
+.card-ext{width:18px;height:18px;display:flex;align-items:center;justify-content:center;color:var(--bd);transition:all .35s var(--ease)}
+.card:hover .card-ext{color:var(--ac);transform:translate(2px,-2px)}
+.card-ext svg{width:13px;height:13px}
+.card h3{font-family:var(--sf);font-size:1.05rem;font-weight:400;line-height:1.3;margin-bottom:.4rem;transition:color .3s}
+.card:hover h3{color:var(--ac)}
+.card-desc{font-size:.82rem;color:var(--fg2);line-height:1.6;flex:1;margin-bottom:.85rem}
+.tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:auto}
+.tag{font-family:var(--sm);font-size:.63rem;padding:.18rem .5rem;border-radius:3px;letter-spacing:.02em}
+.tag-g{background:var(--acs);color:var(--ac)}
+.tag-n{background:var(--bg2);color:var(--fg3)}
+.tag-o{background:var(--gds);color:var(--gd)}
+
+/* ABOUT */
+.about{padding:5rem 3rem;background:var(--bg2);border-top:1px solid var(--bd)}
+.about-inner{max-width:1200px;margin:0 auto}
+.about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;margin-top:2.5rem}
+.timeline{position:relative;padding-left:1.75rem}
+.timeline::before{content:'';position:absolute;left:0;top:.5rem;bottom:.5rem;width:1px;background:linear-gradient(to bottom,var(--ac),var(--bd))}
+.tl-item{position:relative;padding-bottom:1.5rem}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:'';position:absolute;left:-1.75rem;top:.5rem;width:7px;height:7px;border-radius:50%;background:var(--ac);border:2px solid var(--bg2);box-shadow:0 0 0 1.5px var(--ac)}
+.tl-year{font-family:var(--sm);font-size:.68rem;color:var(--fg3);letter-spacing:.06em;margin-bottom:.15rem}
+.tl-role{font-weight:600;font-size:.88rem;line-height:1.35}
+.tl-org{font-size:.82rem;color:var(--fg2)}
+.tl-detail{font-size:.78rem;color:var(--fg3);margin-top:.05rem}
+.about-right{display:flex;flex-direction:column;gap:1.25rem}
+.about-card{background:var(--bgc);border:1px solid var(--bd);border-radius:10px;padding:1.15rem 1.35rem}
+.about-card h4{font-family:var(--sf);font-size:.95rem;font-weight:500;margin-bottom:.1rem}
+.about-card p{font-size:.82rem;color:var(--fg2)}
+
+/* FOOTER */
+.footer{padding:2rem 3rem;border-top:1px solid var(--bd)}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem}
+.footer-left{font-size:.76rem;color:var(--fg3);line-height:1.6}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-size:.76rem;color:var(--fg3);display:flex;align-items:center;gap:.35rem;transition:color .3s}
+.footer-links a:hover{color:var(--ac)}
+.footer-links a svg{width:13px;height:13px}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.rv.vis{opacity:1;transform:translateY(0)}
+.rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .dash-grid{grid-template-columns:repeat(2,1fr)}
+  .beliefs-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav{padding:1rem 1.5rem}
+  .nav.scrolled{padding:.75rem 1.5rem}
+  .nav-links{display:none}
+  .nav-toggle{display:block}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(250,249,247,.97);backdrop-filter:blur(20px);padding:1.5rem;gap:1.25rem;border-bottom:1px solid var(--bd)}
+  .page-header{padding:6rem 1.5rem 2rem}
+  .philosophy{padding:2rem 1.5rem 4rem}
+  .beliefs-grid{grid-template-columns:1fr}
+  .sec{padding:3.5rem 1.5rem}
+  .dash-grid,.dash-grid-2{grid-template-columns:1fr}
+  .sec-hdr{flex-direction:column;align-items:flex-start}
+  .about{padding:3.5rem 1.5rem}
+  .about-grid{grid-template-columns:1fr;gap:2.5rem}
+  .footer{padding:1.5rem}
+  .footer-inner{flex-direction:column;text-align:center}
+  .footer-links{justify-content:center}
+}
+@media(max-width:480px){
+  .page-header h1{font-size:1.8rem}
+  .card{padding:1.15rem}
+  .belief{flex-direction:column;gap:.5rem}
+}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-name">Zhenghao Phua<span>CFA</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="dashboards.html" class="active">Dashboards</a></li>
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="https://github.com/phuazz" target="_blank" rel="noopener">GitHub</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <h1>Dashboards &amp; <em>Philosophy</em></h1>
+  <p>Each dashboard below implements a specific investment belief. They are the working expression of a systematic, rules-based approach to markets.</p>
+</header>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="philosophy">
+  <div class="section-label rv">Investment Philosophy</div>
+  <h2 class="section-title rv">Six beliefs that drive every strategy</h2>
+
+  <div class="beliefs-grid">
+    <div class="belief rv">
+      <div class="belief-num">01</div>
+      <div>
+        <h3>Trends Persist</h3>
+        <p>Markets trend more than they mean-revert over medium horizons. Supported by Moskowitz, Ooi &amp; Pedersen (2012). Never fight the weekly timeframe.</p>
+      </div>
+    </div>
+    <div class="belief rv rv-d1">
+      <div class="belief-num">02</div>
+      <div>
+        <h3>Right-Tail Convexity</h3>
+        <p>A few outsized winners drive returns. Accept sub-50% win rates in exchange for asymmetric payoffs — the mathematical core of trend-following.</p>
+      </div>
+    </div>
+    <div class="belief rv">
+      <div class="belief-num">03</div>
+      <div>
+        <h3>Rules Beat Discretion</h3>
+        <p>Every strategy has codified entry, exit, and sizing rules. If you can't backtest it, you can't trade it.</p>
+      </div>
+    </div>
+    <div class="belief rv rv-d1">
+      <div class="belief-num">04</div>
+      <div>
+        <h3>Entry Point Discipline</h3>
+        <p>Deploy after flat or negative stretches, not after strong runs. When trailing Sharpe &gt; 1.5, wait. Flat or negative? Deploy.</p>
+      </div>
+    </div>
+    <div class="belief rv">
+      <div class="belief-num">05</div>
+      <div>
+        <h3>Survive All Regimes</h3>
+        <p>Good strategies survive every regime. Overly regime-conditioned systems break when regimes shift. Time your capital, not the strategy.</p>
+      </div>
+    </div>
+    <div class="belief rv rv-d1">
+      <div class="belief-num">06</div>
+      <div>
+        <h3>Multi-Timeframe Confirmation</h3>
+        <p>Weekly sets direction, Daily gives the setup, 4H confirms timing, 1H executes. Require 3-of-4 alignment before any trade.</p>
+      </div>
+    </div>
+  </div>
+
+  <a href="https://phuazz.github.io/Investment-Edges/" class="philosophy-link rv" target="_blank" rel="noopener">Read the full framework <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+</section>
+
+<!-- TREND-FOLLOWING -->
+<section class="sec" id="trend">
+  <div class="sec-hdr rv">
+    <div>
+      <div class="section-label">Trend-Following &amp; Breakout</div>
+      <h2 class="section-title">Capturing momentum across markets</h2>
+      <p class="section-desc">Momentum and trend strategies across US equities, global ETFs, and crypto — real data, live scans, clear rules.</p>
+    </div>
+    <div class="sec-count">5 dashboards</div>
+  </div>
+
+  <div class="dash-grid rv">
+    <a href="https://phuazz.github.io/Global-ETF-Trend-Scanner/" class="card" target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+      </div>
+      <h3>Global ETF Trend Scanner</h3>
+      <p class="card-desc">Multi-speed momentum composite scanning a 42+ ETF cross-asset universe. Blended score for ranking, absolute momentum for participation.</p>
+      <div class="tags"><span class="tag tag-g">Cross-Asset</span><span class="tag tag-g">42+ ETFs</span><span class="tag tag-n">Live Scan</span></div>
+    </a>
+
+    <a href="https://phuazz.github.io/supertrend-vs-macd/" class="card" target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+      </div>
+      <h3>Supertrend vs MACD</h3>
+      <p class="card-desc">Indicator crossover system with three entry variants — Breakout, Pullback, and MACD confirmation. Exit on Supertrend flip across a 12-ETF universe.</p>
+      <div class="tags"><span class="tag tag-g">Trend Following</span><span class="tag tag-n">12 ETFs</span><span class="tag tag-n">3 Variants</span></div>
+    </a>
+
+    <a href="https://phuazz.github.io/12M-SMA-Trend-Following/" class="card" target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
+        <div class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+      </div>
+      <h3>12-Month SMA Trend Following</h3>
+      <p class="card-desc">Classic moving average filter for the S&amp;P 500 based on Meb Faber's approach. Risk-on above the 12-month SMA, rotates to cash below.</p>
+      <div class="tags"><span class="tag tag-g">Trend Following</span><span class="tag tag-n">S&amp;P 500</span><span class="tag tag-n">Monthly</span></div>
+    </a>
+
+    <a href="https://phuazz.github.io/Crypto-MAV-Strategy/" class="card" target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><circle cx="12" cy="17" r=".5"/></svg></div>
+        <div class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+      </div>
+      <h3>Crypto MAV Strategy</h3>
+      <p class="card-desc">50W / 200W SMA regime strategy inspired by Benjamin Cowen. Long above the 50W SMA with confirmation weeks; exit below. BTC, ETH, XRP, BNB.</p>
+      <div class="tags"><span class="tag tag-g">Regime-Based</span><span class="tag tag-n">Crypto</span><span class="tag tag-n">Weekly</span></div>
+    </a>
+
+    <a href="https://phuazz.github.io/darvas-box-scanner/" class="card" target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <div class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+      </div>
+      <h3>Darvas Box Scanner</h3>
+      <p class="card-desc">Price-channel breakout system inspired by Nicolas Darvas. Enters when close exceeds N-day high with volume confirmation; trails a box-bottom stop.</p>
+      <div class="tags"><span class="tag tag-g">Breakout</span><span class="tag tag-n">42 US Stocks</span><span class="tag tag-n">Live Scan</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- PORTFOLIO & DEFENCE -->
+<section class="sec" id="portfolio" style="border-top:1px solid var(--bd)">
+  <div class="sec-hdr rv">
+    <div>
+      <div class="section-label">Portfolio Construction &amp; Defence</div>
+      <h2 class="section-title">Protecting capital, allocating with discipline</h2>
+      <p class="section-desc">Allocation frameworks, risk overlays, and the command centre that ties everything together.</p>
+    </div>
+    <div class="sec-count">3 dashboards</div>
+  </div>
+
+  <div class="dash-grid rv">
+    <a href="https://phuazz.github.io/Portfolio-Command-Centre/" class="card" target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <div class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+      </div>
+      <h3>Portfolio Command Centre</h3>
+      <p class="card-desc">The cockpit. Regime overlay, equity curve analysis, drawdown tracking, and multi-strategy performance attribution in one centralised view.</p>
+      <div class="tags"><span class="tag tag-o">Flagship</span><span class="tag tag-n">Multi-Strategy</span><span class="tag tag-n">Live</span></div>
+    </a>
+
+    <a href="https://phuazz.github.io/Long-Term-Portfolio-Construction/" class="card" target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+        <div class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+      </div>
+      <h3>Long-Term Portfolio Construction</h3>
+      <p class="card-desc">Strategic allocation framework for building durable, multi-asset portfolios. Risk budgeting, asset class weights, and rebalancing discipline.</p>
+      <div class="tags"><span class="tag tag-o">Allocation</span><span class="tag tag-n">Multi-Asset</span><span class="tag tag-n">Strategic</span></div>
+    </a>
+
+    <a href="https://phuazz.github.io/equity-defense-dashboard/" class="card" target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+      </div>
+      <h3>Equity Defence Dashboard</h3>
+      <p class="card-desc">Tail-risk indicators, volatility regimes, and protective overlay signals. The early-warning system that guards capital when markets turn.</p>
+      <div class="tags"><span class="tag tag-o">Defence</span><span class="tag tag-n">Risk Monitoring</span><span class="tag tag-n">Drawdown Control</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- TRADE PLANNING -->
+<section class="sec" id="trades" style="border-top:1px solid var(--bd)">
+  <div class="sec-hdr rv">
+    <div>
+      <div class="section-label">Trade Planning &amp; Case Studies</div>
+      <h2 class="section-title">The framework in practice</h2>
+      <p class="section-desc">Specific trade plans applying the universal 5-layer process to real positions.</p>
+    </div>
+    <div class="sec-count">1 dashboard</div>
+  </div>
+
+  <div class="dash-grid dash-grid-2 rv">
+    <a href="https://phuazz.github.io/COPX-Trade-Plan/" class="card" target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <div class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+      </div>
+      <h3>COPX Trade Plan</h3>
+      <p class="card-desc">Full 5-layer trade plan for the Global X Copper Miners ETF — thesis (electrification supercycle), multi-timeframe confirmation, breadth check, ATR sizing, and Supertrend management.</p>
+      <div class="tags"><span class="tag tag-g">Case Study</span><span class="tag tag-n">Copper Miners</span><span class="tag tag-n">COPX</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="section-label rv">About</div>
+    <h2 class="section-title rv">Zhenghao Phua, CFA</h2>
+    <p class="section-desc rv">15+ years building systematic, rules-based investment processes across multi-asset portfolios in Singapore's institutional landscape.</p>
+
+    <div class="about-grid">
+      <div class="timeline rv">
+        <div class="tl-item">
+          <div class="tl-year">2025 — 2026</div>
+          <div class="tl-role">Group Head of Investment</div>
+          <div class="tl-org">CGS International Securities — Asset Management</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2023 — 2025</div>
+          <div class="tl-role">Head of Investment Strategy</div>
+          <div class="tl-org">Income Insurance</div>
+          <div class="tl-detail">S$40B multi-asset portfolio</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2010 — 2023</div>
+          <div class="tl-role">Head of Benchmark Relative Strategies</div>
+          <div class="tl-org">Eastspring Investments</div>
+          <div class="tl-detail">S$35B multi-asset</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2008 — 2010</div>
+          <div class="tl-role">Research Analyst, Asset Allocation</div>
+          <div class="tl-org">UOB Asset Management</div>
+        </div>
+      </div>
+
+      <div class="about-right rv rv-d1">
+        <div class="about-card">
+          <h4>CFA Charterholder</h4>
+          <p>Since 2012</p>
+        </div>
+        <div class="about-card">
+          <h4>BBA (First Class Honours), Finance</h4>
+          <p>National University of Singapore — CAP 4.75 / 5.0</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">Personal projects &amp; research. Not investment advice. &copy; 2026 Zhenghao Phua</div>
+    <div class="footer-links">
+      <a href="https://github.com/phuazz" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/zhenghao-phua-50811224/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="mailto:phuazz@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
+const toggle=document.getElementById('navToggle'),links=document.getElementById('navLinks');
+toggle.addEventListener('click',()=>links.classList.toggle('open'));
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+const obs=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('vis')}),{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const h=this.getAttribute('href');if(h==='#')return;e.preventDefault();const t=document.querySelector(h);if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+</script>
+</body>
+</html>
