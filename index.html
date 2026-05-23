@@ -267,36 +267,40 @@ a{color:inherit;text-decoration:none}
       </div>
     </a>
 
-    <!-- Global ETF Trend Scanner -->
-    <a href="https://phuazz.github.io/Global-ETF-Trend-Scanner/" class="dash-card rv rv-d2" target="_blank" rel="noopener">
+    <!-- Breadth-Thrust ETF Research -->
+    <a href="https://phuazz.github.io/breadth-thrust-etf/" class="dash-card rv rv-d2" target="_blank" rel="noopener">
       <div class="dash-preview">
         <svg viewBox="0 0 280 130" fill="none">
-          <!-- Momentum bar chart -->
-          <rect x="8" y="98" width="22" height="22" rx="2" fill="rgba(26,107,66,.1)"/>
-          <rect x="38" y="82" width="22" height="38" rx="2" fill="rgba(26,107,66,.15)"/>
-          <rect x="68" y="68" width="22" height="52" rx="2" fill="rgba(26,107,66,.22)"/>
-          <rect x="98" y="52" width="22" height="68" rx="2" fill="rgba(26,107,66,.3)"/>
-          <rect x="128" y="40" width="22" height="80" rx="2" fill="rgba(26,107,66,.38)"/>
-          <rect x="158" y="28" width="22" height="92" rx="2" fill="rgba(26,107,66,.46)"/>
-          <rect x="188" y="18" width="22" height="102" rx="2" fill="rgba(26,107,66,.54)"/>
-          <rect x="218" y="8" width="22" height="112" rx="2" fill="rgba(26,107,66,.65)"/>
-          <rect x="248" y="4" width="22" height="116" rx="2" fill="rgba(26,107,66,.75)"/>
-          <!-- Trend line -->
-          <path d="M19 94 L49 78 L79 64 L109 48 L139 36 L169 24 L199 14 L229 6 L259 2" stroke="rgba(26,107,66,.4)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-dasharray="3 2"/>
-          <circle cx="259" cy="2" r="3" fill="var(--ac)"/>
+          <!-- Ranked breadth bars — top-K (owned) in green, rest (excluded) muted -->
+          <rect x="6"   y="14"  width="18" height="106" rx="2" fill="rgba(26,107,66,.65)"/>
+          <rect x="28"  y="22"  width="18" height="98"  rx="2" fill="rgba(26,107,66,.58)"/>
+          <rect x="50"  y="30"  width="18" height="90"  rx="2" fill="rgba(26,107,66,.5)"/>
+          <rect x="72"  y="40"  width="18" height="80"  rx="2" fill="rgba(26,107,66,.42)"/>
+          <rect x="94"  y="50"  width="18" height="70"  rx="2" fill="rgba(26,107,66,.36)"/>
+          <rect x="116" y="60"  width="18" height="60"  rx="2" fill="rgba(26,107,66,.3)"/>
+          <rect x="138" y="70"  width="18" height="50"  rx="2" fill="rgba(26,107,66,.24)"/>
+          <!-- Top-K cutoff line -->
+          <line x1="0" y1="80" x2="280" y2="80" stroke="rgba(184,150,62,.7)" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <text x="166" y="78" font-family="var(--sm)" font-size="7" fill="rgba(184,150,62,.85)">top-K cutoff</text>
+          <!-- Excluded (below cutoff) -->
+          <rect x="160" y="84"  width="18" height="36"  rx="2" fill="rgba(122,122,136,.22)"/>
+          <rect x="182" y="92"  width="18" height="28"  rx="2" fill="rgba(122,122,136,.18)"/>
+          <rect x="204" y="98"  width="18" height="22"  rx="2" fill="rgba(122,122,136,.15)"/>
+          <rect x="226" y="104" width="18" height="16"  rx="2" fill="rgba(122,122,136,.13)"/>
+          <rect x="248" y="108" width="18" height="12"  rx="2" fill="rgba(122,122,136,.1)"/>
         </svg>
       </div>
       <div class="dash-body">
         <div class="dash-top">
-          <div class="dash-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <div class="dash-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-8"/></svg></div>
           <div class="dash-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
         </div>
-        <h3>Global ETF Trend Scanner</h3>
-        <p class="dash-desc">Multi-speed momentum composite scanning 42+ ETFs across equities, bonds, commodities, and FX. Blended score for ranking, absolute momentum for participation.</p>
+        <h3>Breadth-Thrust ETF Research</h3>
+        <p class="dash-desc">Two-strategy stack — rank US sectors by constituent breadth, rank asset classes by 200d MA momentum, own top-K each week. 50/50 blend hits Sharpe 1.00 with -20% max drawdown, better than either alone.</p>
         <div class="dash-tags">
-          <span class="tag tag-g">Cross-Asset</span>
-          <span class="tag tag-g">42+ ETFs</span>
-          <span class="tag tag-n">Live Scan</span>
+          <span class="tag tag-g">Multi-Strategy</span>
+          <span class="tag tag-g">29 ETFs</span>
+          <span class="tag tag-n">Sharpe 1.00</span>
         </div>
       </div>
     </a>
