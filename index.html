@@ -180,7 +180,7 @@ a{color:inherit;text-decoration:none}
   <h1>I build rules-based strategies — and <em>open-source the proof.</em></h1>
   <p class="hero-intro">Interactive dashboards translating investment beliefs into backtested, systematic strategies across equities, bonds, commodities, crypto, and FX. 15 years of institutional experience, distilled into tools you can explore.</p>
   <div class="hero-metrics">
-    <div class="hero-metric"><div class="hero-metric-val">10</div><div class="hero-metric-lbl">Dashboards</div></div>
+    <div class="hero-metric"><div class="hero-metric-val">11</div><div class="hero-metric-lbl">Dashboards</div></div>
     <div class="hero-metric"><div class="hero-metric-val">6</div><div class="hero-metric-lbl">Asset Classes</div></div>
     <div class="hero-metric"><div class="hero-metric-val">15+</div><div class="hero-metric-lbl">Yrs Experience</div></div>
   </div>
@@ -193,7 +193,7 @@ a{color:inherit;text-decoration:none}
 <!-- FEATURED DASHBOARDS -->
 <section class="dashboards" id="featured">
   <div class="section-label rv">Featured Work</div>
-  <h2 class="section-title rv">Three strategies worth exploring</h2>
+  <h2 class="section-title rv">Four strategies worth exploring</h2>
   <p class="section-desc rv">Each dashboard is a working expression of a specific investment belief — live data, clear rules, full backtest.</p>
 
   <div class="dash-grid">
@@ -304,10 +304,40 @@ a{color:inherit;text-decoration:none}
         </div>
       </div>
     </a>
+
+    <!-- Breadth-Thrust Signal -->
+    <a href="https://phuazz.github.io/breadth-thrust-signal/" class="dash-card rv" target="_blank" rel="noopener">
+      <div class="dash-preview">
+        <svg viewBox="0 0 280 130" fill="none">
+          <!-- rising index line -->
+          <path d="M12 112 L45 100 L70 105 L95 84 L120 90 L150 66 L175 72 L205 50 L235 40 L268 22" stroke="rgba(26,107,66,.55)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- high-conviction threshold -->
+          <line x1="12" y1="62" x2="268" y2="62" stroke="rgba(184,150,62,.6)" stroke-width="1" stroke-dasharray="4 3"/>
+          <text x="14" y="58" font-family="var(--sm)" font-size="7" fill="rgba(184,150,62,.85)">conviction ≥ 3</text>
+          <!-- thrust markers: green triangles, larger = higher conviction -->
+          <path d="M95 80 l6 10 l-12 0 z" fill="rgba(26,107,66,.75)"/>
+          <path d="M150 60 l6 10 l-12 0 z" fill="rgba(26,107,66,.85)"/>
+          <path d="M205 44 l7 12 l-14 0 z" fill="rgba(13,79,46,.92)"/>
+        </svg>
+      </div>
+      <div class="dash-body">
+        <div class="dash-top">
+          <div class="dash-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+          <div class="dash-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+        </div>
+        <h3>Breadth-Thrust Signal</h3>
+        <p class="dash-desc">Risk-on conviction meter and conditional forward-return study — the bullish mirror of the Equity Defence Dashboard. Four breadth dimensions scored 0&ndash;4 on survivorship-correct S&amp;P 500 membership, every forward return carried against its bootstrap baseline.</p>
+        <div class="dash-tags">
+          <span class="tag tag-g">Breadth</span>
+          <span class="tag tag-g">Conviction 0&ndash;4</span>
+          <span class="tag tag-n">Forward-Return Study</span>
+        </div>
+      </div>
+    </a>
   </div>
 
   <div class="dash-more rv">
-    <a href="dashboards.html">View all 10 dashboards <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a href="dashboards.html">View all 11 dashboards <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </div>
 </section>
 
