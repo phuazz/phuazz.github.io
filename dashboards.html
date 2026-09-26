@@ -35,7 +35,7 @@
   --gd:#b8963e;--gds:#faf5eb;
   /* -text variants: --fg3 (3.08:1) and --gd (2.59:1) fail WCAG AA as small text.
      Keep the originals for icons and large type; use these wherever the colour
-     carries words. Mirrors the -text set in C:devdesign.md. */
+     carries words. Mirrors the -text set in C:/dev/design.md. */
   --fg3-text:#66665e;--gd-text:#7a5f1c;
   --bd:#e2e0d8;--bdh:#d5d3ca;
   --sf:'Newsreader',Georgia,serif;
@@ -48,7 +48,7 @@
   --shadow-md:0 6px 16px rgba(20,20,24,.06),0 2px 6px rgba(20,20,24,.04);
   --shadow-lg:0 20px 50px rgba(20,20,24,.09),0 6px 16px rgba(20,20,24,.05);
 }
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body{font-family:var(--ss);color:var(--fg);background:var(--bg);line-height:1.65;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--acs);color:var(--acd)}
@@ -132,7 +132,7 @@ a{color:inherit;text-decoration:none}
 .card:hover h3{color:var(--ac)}
 .card-desc{font-size:.82rem;color:var(--fg2);line-height:1.6;flex:1;margin-bottom:.85rem}
 .tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:auto}
-.tag{font-family:var(--sm);font-size:.63rem;padding:.18rem .5rem;border-radius:3px;letter-spacing:.02em}
+.tag{font-family:var(--sm);font-size:.6875rem;padding:.18rem .5rem;border-radius:3px;letter-spacing:.02em}
 .tag-g{background:var(--acs);color:var(--ac)}
 .tag-n{background:var(--bg2);color:var(--fg3-text)}
 .tag-o{background:var(--gds);color:var(--gd-text)}
@@ -142,9 +142,9 @@ a{color:inherit;text-decoration:none}
 .beliefs-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
 .belief{background:var(--bgc);border:1px solid var(--bd);border-radius:12px;padding:1.5rem 1.5rem;display:flex;gap:1rem;transition:all .35s var(--ease)}
 .belief:hover{border-color:var(--bdh);box-shadow:0 4px 20px rgba(0,0,0,.04)}
-.belief-num{font-family:var(--sm);font-size:.62rem;color:var(--fg3-text);letter-spacing:.1em;flex-shrink:0;padding-top:.15rem}
+.belief-num{font-family:var(--sm);font-size:.6875rem;color:var(--fg3-text);letter-spacing:.1em;flex-shrink:0;padding-top:.15rem}
 .belief h3{font-family:var(--sf);font-size:1.05rem;font-weight:400;color:var(--fg);line-height:1.3;margin-bottom:.35rem}
-.belief p{font-size:.82rem;line-height:1.6;color:var(--fg2)}
+.belief p{font-size:.82rem;line-height:1.6;color:var(--fg2);max-width:66ch}
 .philosophy-link{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.5rem;font-size:.85rem;font-weight:500;color:var(--ac);transition:gap .3s var(--ease)}
 .philosophy-link:hover{gap:.75rem}
 .philosophy-link svg{width:15px;height:15px}
@@ -158,14 +158,14 @@ a{color:inherit;text-decoration:none}
 .tl-item{position:relative;padding-bottom:1.5rem}
 .tl-item:last-child{padding-bottom:0}
 .tl-item::before{content:'';position:absolute;left:-1.75rem;top:.5rem;width:7px;height:7px;border-radius:50%;background:var(--ac);border:2px solid var(--bg2);box-shadow:0 0 0 1.5px var(--ac)}
-.tl-year{font-family:var(--sm);font-size:.68rem;color:var(--fg3-text);letter-spacing:.06em;margin-bottom:.15rem}
+.tl-year{font-family:var(--sm);font-size:.6875rem;color:var(--fg3-text);letter-spacing:.06em;margin-bottom:.15rem}
 .tl-role{font-weight:600;font-size:.88rem;line-height:1.35}
 .tl-org{font-size:.82rem;color:var(--fg2)}
 .tl-detail{font-size:.78rem;color:var(--fg3-text);margin-top:.05rem}
 .about-right{display:flex;flex-direction:column;gap:1.25rem}
 .about-card{background:var(--bgc);border:1px solid var(--bd);border-radius:10px;padding:1.15rem 1.35rem}
 .about-card h4{font-family:var(--sf);font-size:.95rem;font-weight:500;margin-bottom:.1rem}
-.about-card p{font-size:.82rem;color:var(--fg2)}
+.about-card p{font-size:.82rem;color:var(--fg2);max-width:66ch}
 
 /* FOOTER */
 .footer{padding:2rem 3rem;border-top:1px solid var(--bd)}
@@ -219,6 +219,12 @@ a{color:inherit;text-decoration:none}
   .belief{flex-direction:column;gap:.5rem}
   .result-count{margin-left:0}
 }
+.filter-note{font-size:.75rem;color:var(--fg2);margin:0;max-width:66ch}
+.mobile-theme{display:none}.filter-status{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.mobile-theme select{font:inherit;color:var(--fg);background:var(--bgc);border:1px solid var(--bd);border-radius:6px;padding:.65rem;min-height:44px;max-width:100%;width:100%}
+.chip{min-height:44px}.chip .n{opacity:1}.search-clear,.nav-toggle{min-width:44px;min-height:44px}
+@media(max-width:768px){.toolbar{position:relative;top:auto}.card-desc{font-size:.9375rem}}
+@media(max-width:600px){#chips{display:none}.mobile-theme{display:flex;gap:.75rem;align-items:center;font-size:.875rem}.mobile-theme label{flex-shrink:0}.filter-status{gap:.5rem}.filter-note{font-size:.75rem}.page-header{padding-bottom:1.25rem}}
 </style>
 </head>
 <body>
@@ -231,13 +237,13 @@ a{color:inherit;text-decoration:none}
     <li><a href="#about">About</a></li>
     <li><a href="https://github.com/phuazz" target="_blank" rel="noopener">GitHub</a></li>
   </ul>
-  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- PAGE HEADER -->
 <header class="page-header">
   <h1>Every dashboard, <em>in one place</em></h1>
-  <p>A living index of the systematic, rules-based dashboards I run. Each one implements a specific investment belief. Search by keyword or filter by theme.</p>
+  <p>Choose a tool for monitoring markets, reviewing research or planning an allocation. Filter by task and theme, or search the library.</p>
 </header>
 
 <!-- TOOLBAR -->
@@ -249,7 +255,10 @@ a{color:inherit;text-decoration:none}
       <button class="search-clear" id="searchClear" aria-label="Clear search">&times;</button>
       <kbd class="search-kbd" aria-hidden="true">/</kbd>
     </div>
-    <div class="chips" id="chips"></div>
+    <div class="chips" id="tasks" role="group" aria-label="Filter by task"></div>
+    <div class="chips" id="chips" role="group" aria-label="Filter by theme"></div>
+    <div class="mobile-theme"><label for="themeSelect">Theme</label><select id="themeSelect"></select></div>
+    <div class="filter-status"><span class="result-count" id="count" role="status" aria-live="polite"></span><p class="filter-note">Check each dashboard’s data date. Task labels describe purpose.</p></div>
   </div>
 </div>
 
@@ -287,15 +296,15 @@ a{color:inherit;text-decoration:none}
     <div class="belief rv rv-d1">
       <div class="belief-num">04</div>
       <div>
-        <h3>Entry Point Discipline</h3>
-        <p>Deploy after flat or negative stretches, not after strong runs. When trailing Sharpe &gt; 1.5, wait. Flat or negative? Deploy.</p>
+        <h3>Pre-Registration Discipline</h3>
+        <p>Set the rules and evaluation gates before testing. A strategy that clears its registered gates deploys at its planned size; recent strong performance is not a reason to defer it.</p>
       </div>
     </div>
     <div class="belief rv">
       <div class="belief-num">05</div>
       <div>
         <h3>Survive All Regimes</h3>
-        <p>Good strategies survive every regime. Overly regime-conditioned systems break when regimes shift. Time your capital, not the strategy.</p>
+        <p>Evaluate strategies across different market conditions. Record their failure modes and costs, and distinguish evidence from a discretionary override.</p>
       </div>
     </div>
     <div class="belief rv rv-d1">
@@ -378,106 +387,29 @@ a{color:inherit;text-decoration:none}
   </div>
 </footer>
 
+<script src="catalogue.js"></script>
 <script>
-/* ---- Dashboard catalogue --------------------------------------------------
-   Single source of truth for the index. To add a dashboard, append one entry
-   with its category id (c) and it renders automatically under that heading.
-   Categories: trend | stock | crypto | regime | portfolio | regional        */
-const CATS=[
-  {id:'trend',    label:'Trend & Momentum',                icon:'<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>',                          kind:'g'},
-  {id:'stock',    label:'Stock Selection & Timing',        icon:'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',                  kind:'g'},
-  {id:'crypto',   label:'Crypto',                          icon:'<circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6v4M6 8h2"/>',                    kind:'g'},
-  {id:'regime',   label:'Market Regime, Breadth & Risk',   icon:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',                                                        kind:'o'},
-  {id:'portfolio',label:'Portfolio Construction & Defence',icon:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>',                                     kind:'o'},
-  {id:'regional', label:'Regional & Case Studies',         icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>',       kind:'g'},
-];
-const DASH=[
-  /* Trend & Momentum */
-  {c:'trend',t:'Momentum Rotation',u:'https://phuazz.github.io/momentum-rotation/',tags:['Cross-Asset','Replication','Monthly'],
-   d:"Replication of Rayner Teo's four-asset monthly rotation across GLD / SPY / TLT / DBC. Top-2 by 12-month ROC with a 200-day SMA filter, graduated-allocation overlay, universe-sensitivity sweep, and an equal-weight benchmark."},
-  {c:'trend',t:'12-Month SMA Trend Following',u:'https://phuazz.github.io/12M-SMA-Trend-Following/',tags:['Trend Following','S&P 500','Monthly'],
-   d:'Classic moving-average filter for the S&P 500 after Meb Faber. Risk-on above the 12-month SMA, rotate to cash below.'},
-  {c:'trend',t:'SAA Trend-Overlay Lab',u:'https://phuazz.github.io/saa-trend-overlay-lab/',tags:['Trend Following','Asset Allocation','Faber','Monthly'],
-   d:'Faber 10-month trend overlay on a nine-block strategic asset allocation, back to the 1960s–90s via spliced total-return series. Per-asset overlay vs one overlay on the balanced base — keep the single overlay; the robust lever is inverse-vol weighting.'},
-  {c:'trend',t:'Supertrend vs MACD',u:'https://phuazz.github.io/supertrend-vs-macd/',tags:['Trend Following','12 ETFs','3 Variants'],
-   d:'Indicator-crossover system with three entry variants — Breakout, Pullback, and MACD confirmation — exiting on a Supertrend flip across a 12-ETF universe.'},
-  {c:'trend',t:'Global ETF Trend Scanner',u:'https://phuazz.github.io/Global-ETF-Trend-Scanner/',tags:['Cross-Asset','56 ETFs','Backtest Engine'],
-   d:'Trend-following scanner over a 56-ETF cross-asset universe with an integrated backtest engine — cross-sectional momentum, TSMOM, and a multi-signal composite under strict point-in-time discipline, plus a pre-registered event-study tab.'},
-  {c:'trend',t:'Trend Replication Lab',u:'https://phuazz.github.io/trend-replication-lab/',tags:['Trend Following','CTA Replication','ETF-Native','Weekly'],
-   d:'ETF-native replication of a published 62-market diversified-CTA trend baseline — four-horizon momentum z-scores, 63-day price-change volatility, two-stage sector→portfolio vol targeting, and a weekly rebalance with honest costs. The point is the process: reproduce a published methodology exactly and document where a backtest can go silently wrong. Research replication — not deployed.'},
-
-  /* Stock Selection & Timing */
-  {c:'stock',t:'Darvas Box Scanner',u:'https://phuazz.github.io/darvas-box-scanner/',tags:['Breakout','42 US Stocks','Live Scan'],
-   d:'Price-channel breakout system after Nicolas Darvas — enters when the close exceeds an N-day high with volume confirmation and trails a box-bottom stop.'},
-  {c:'stock',t:'VCP Screener',u:'https://phuazz.github.io/vcp-screener/',tags:['VCP','Trend Template','Watchlist + Sleeve'],
-   d:"Rules-based screen for Mark Minervini's Volatility Contraction Pattern on top of his eight-condition Trend Template. An audited, out-of-sample-validated backtest frames it as a low-drawdown defensive sleeve and idea-generation watchlist — not a standalone index-beater."},
-  {c:'stock',t:'Parabolic Scale-Out Monitor',u:'https://phuazz.github.io/parabolic-scale-out/',tags:['Scale-Out','7 Names','Tranche State'],
-   d:'Reports which scale-out tranche is live for a fixed list of extended equities and ETFs, using EMA-8 / EMA-21 break rules and a semiconductor cluster-break flag. Confirmed daily closes only.'},
-  {c:'stock',t:'Buy the Dip',u:'https://phuazz.github.io/buy-the-dip/',tags:['Mean Reversion','Point-in-Time','S&P 500'],
-   d:"Stock-level dip-buying on the S&P 500 with a survivorship-bias-free, point-in-time universe — a reconstruction of the CrackingMarkets 'Buy the Dip' family (200-day trend filter, RSI(5) dip trigger, five-bar exit). Mechanics view live while the full-history run is completed."},
-
-  /* Crypto */
-  {c:'crypto',t:'Crypto MAV Strategy',u:'https://phuazz.github.io/Crypto-MAV-Strategy/',tags:['Regime-Based','Crypto','Weekly'],
-   d:'50W / 200W SMA regime strategy after Benjamin Cowen — long above the 50W SMA with confirmation weeks, exit below. BTC, ETH, XRP, BNB.'},
-  {c:'crypto',t:'Crypto Breadth & Momentum',u:'https://phuazz.github.io/crypto-breadth/',tags:['Cross-Sectional Momentum','25 Coins','Breadth-Gated'],
-   d:'Cross-sectional momentum on crypto majors, gated by market breadth and per-coin trend filters. 25-coin Binance USDT universe with a rolling-liquidity gate, breadth-tiered gross exposure, and top-4 composite-momentum sizing (30/90/180d). Research-grade — not deployed.'},
-  {c:'crypto',t:'Perp Funding Scanner',u:'https://phuazz.github.io/Perp-Funding-Scanner/',tags:['Crypto Perps','~500 Symbols','Funding + Trend'],
-   d:'Scans the full Binance USD-M perpetual universe (~500 symbols) for paid-direction setups by combining funding extremity (30-day annualised) with a multi-timeframe trend score on the 10 / 20 / 50-day MA stack.'},
-
-  /* Market Regime, Breadth & Risk */
-  {c:'regime',t:'Equity Defence Dashboard',u:'https://phuazz.github.io/equity-defense-dashboard/',tags:['Defence','Risk Monitoring','Drawdown Control'],
-   d:'Tail-risk indicators, volatility regimes, and protective-overlay signals — the early-warning system that guards capital when markets turn.'},
-  {c:'regime',t:'Breadth-Thrust Signal',u:'https://phuazz.github.io/breadth-thrust-signal/',tags:['Breadth','Conviction 0–4','Forward-Return Study'],
-   d:'Risk-on conviction meter and conditional forward-return study — the bullish mirror of the Equity Defence Dashboard. Four independent breadth dimensions scored 0–4 on survivorship-correct, point-in-time S&P 500 membership; every forward-return figure carried against its bootstrap baseline.'},
-  {c:'regime',t:'Market Regime Dashboard',u:'https://phuazz.github.io/market-regime-dashboard/',tags:['Macro','Recession + Froth','3 Lenses'],
-   d:'Three-lens macro read — seven recession-risk indicators, eight market-peak froth gauges with a SLOOS context row, and a 50 / 150-day price-trend confirmation — built entirely from sourced public data with scheduled refreshes.'},
-  {c:'regime',t:'Scenario Analysis Tracker',u:'https://phuazz.github.io/scenario-analysis-tracker/',tags:['Signal Tracker','Credibility Gate','Actual vs Expected'],
-   d:'A database of scenario-analysis events — third-party research signals and internal dashboard triggers — with credibility gating and actual-vs-expected monitoring that builds a provider-level track record over time.'},
-  {c:'regime',t:'Event Studies',u:'https://phuazz.github.io/event-studies/',tags:['Event Study','Pre-Registered','Early Build'],
-   d:'Pre-registered, multi-universe event-study engine — finds historical triggers, collapses them into independent episodes, and tests forward-return distributions against an unconditional baseline with a Monte Carlo significance test. Every event requires a written rationale before admission. Early build (Phase 0).'},
-  {c:'regime',t:'Crowd Sentiment Composite',u:'https://phuazz.github.io/crowd-sentiment/',tags:['Sentiment','Contrarian','Daily'],
-   d:'Daily crowd-sentiment state for the S&P 500 from 12 public-sourced inputs — surveys, positioning, options and breadth — scored against adaptive extreme bands. Read contrarian: the buy-side edge concentrates at 1–3 months in deep pessimism; a costed tilt overlay was tested under a pre-registered rule and rejected, published as a negative result.'},
-
-  /* Portfolio Construction & Defence */
-  {c:'portfolio',t:'Portfolio Command Centre',u:'https://phuazz.github.io/Portfolio-Command-Centre/',tags:['Flagship','Multi-Strategy','Live'],
-   d:'The cockpit — regime overlay, equity-curve analysis, drawdown tracking, and multi-strategy performance attribution in one centralised view.'},
-  {c:'portfolio',t:'Long-Term Portfolio Construction',u:'https://phuazz.github.io/Long-Term-Portfolio-Construction/',tags:['Allocation','Multi-Asset','Strategic','Mandate-First'],
-   d:'A mandate-first strategic asset-allocation tool: set the horizon and the drawdown you can actually live through, then judge allocations against it. Published capital market assumptions reconciled line-by-line, six named archetypes with outcome ranges rather than point estimates, a live allocation editor sharing one engine with them, a stress lab (five historical episodes plus the growth/inflation quadrants, inflation and rates/FX stress — stylised), and the systematic de-risk/re-risk overlay linked to live signal dashboards. The allocation layer that pairs with ETF Starter\'s instrument layer. Educational — not advice.'},
-  {c:'portfolio',t:'ETF Starter · Singapore',u:'https://phuazz.github.io/etf-starter-sg/',tags:['ETFs','Core-Satellite','Beginner','Singapore'],
-   d:'An entry-level ETF selector and portfolio builder for Singapore investors. Screens SGX-listed and Irish-UCITS funds on cost, domicile/estate-tax, and forward-looking return; a transparent Efficiency Score ranks them; a risk-profile builder assembles a portfolio with a US-estate-tax read-out. Educational — not advice.'},
-  {c:'portfolio',t:'Property Decision · Singapore',u:'https://phuazz.github.io/sg-property-decision/',tags:['Property','Buy vs Rent','Singapore','Live Data'],
-   d:'A home-buying decision tool for Singapore. An affordability & loan engine (TDSR/MSR/LTV with the age-65 tenure cliff, ABSD/BSD), a buy-vs-rent / cash-vs-mortgage view built around today\'s low rates and a forced-seller buffer, an HDB-vs-condo-vs-landed scorecard, and a where-to-buy map driven by live GLS land bids and segment prices. Educational — not advice.'},
-  {c:'portfolio',t:'Money Snowball · for Kids',u:'https://phuazz.github.io/money-snowball/',tags:['Compounding','Kids','Education','Interactive'],
-   d:'Teaches compounding to children (roughly 7–12) by making them guess, then showing the number — every quantity sized to something a child can actually feel. Eight steps: a race between $10-a-day pocket money and a doubling 1-cent coin (which loses for 14 days, then wins by 17,896×), two snowballs where one kid keeps the profit and the other eats it, the Rule of 72, a pocket-money calculator, Early Bird vs Late Bird, an honest look at where ~10% comes from including the years it falls by half, and the cost of doing nothing — inflation priced in ice creams, where $100 under the bed buys 33 cones today and 18 in twenty years. Plus a grown-up income→net-worth mode and a parent guide. An age toggle scales the language and the maths. Educational — not advice.'},
-  {c:'portfolio',t:'Multi-Strategy Portfolio',u:'https://phuazz.github.io/multi-strategy-portfolio/',tags:['Model Portfolio','Multi-Sleeve','Daily','Paper'],
-   d:'Daily monitor for a systematic model (paper) portfolio — four sleeves of breadth- and trend-driven global ETF rotation with a systematic de-risk overlay. A read-only consumer of the strategy engine: benchmark-relative performance, allocation, attribution, regime state, and first-class data-health surfacing. Hypothetical model — not investment advice.'},
-
-  /* Regional & Case Studies */
-  {c:'regional',t:'STI–SMID Vol Rotation',u:'https://phuazz.github.io/sti-smid-rotation/',tags:['Singapore','STI vs SMID','Live Signal'],
-   d:'Live signal monitor rotating between Singapore large-caps (STI) and small/mid-caps on a volatility-regime rule.'},
-  {c:'regional',t:'COPX Trade Plan',u:'https://phuazz.github.io/COPX-Trade-Plan/',tags:['Case Study','Copper Miners','COPX'],
-   d:'Full five-layer trade plan for the Global X Copper Miners ETF — thesis (electrification supercycle), multi-timeframe confirmation, breadth check, ATR sizing, and Supertrend management.'},
-];
-
+/* Catalogue records and task assignments are maintained in catalogue.js. */
 /* ---- Render --------------------------------------------------------------- */
-const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 const idx=document.getElementById('index');
 const byCat={};DASH.forEach(x=>{(byCat[x.c]=byCat[x.c]||[]).push(x)});
 CATS.forEach(cat=>{
   const items=byCat[cat.id]||[];if(!items.length)return;
   const sec=document.createElement('section');sec.className='cat';sec.dataset.cat=cat.id;
   const grid=items.map(x=>{
-    const s=(x.t+' '+x.d+' '+x.tags.join(' ')).toLowerCase();
+    const task=TASKS.find(task=>task.id===x.task);
+    const s=(x.t+' '+x.d+' '+x.tags.join(' ')+' '+task.label).toLowerCase();
     const lead=cat.kind==='o'?'tag-o':'tag-g';
     const tags=x.tags.map((t,i)=>`<span class="tag ${i===0?lead:'tag-n'}">${esc(t)}</span>`).join('');
-    return `<a class="card" href="${x.u}" target="_blank" rel="noopener" data-cat="${cat.id}" data-s="${esc(s)}">
+    return `<a class="card" href="${x.u}" target="_blank" rel="noopener" data-cat="${cat.id}" data-task="${x.task}" data-s="${esc(s)}">
       <div class="card-top">
         <div class="card-icon ${cat.kind}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${cat.icon}</svg></div>
         <div class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
       </div>
       <h3>${esc(x.t)}</h3>
       <p class="card-desc">${esc(x.d)}</p>
-      <div class="tags">${tags}</div>
+      <div class="tags"><span class="tag tag-n">${esc(task.label)}</span>${tags}</div>
     </a>`;
   }).join('');
   sec.innerHTML=`<div class="cat-hdr"><h2>${esc(cat.label)}</h2><span class="c">${items.length}</span></div><div class="dash-grid">${grid}</div>`;
@@ -488,7 +420,11 @@ CATS.forEach(cat=>{
 const chipRow=document.getElementById('chips');
 chipRow.innerHTML=`<button class="chip active" data-cat="all">All <span class="n">${DASH.length}</span></button>`
   +CATS.map(c=>{const n=(byCat[c.id]||[]).length;return n?`<button class="chip" data-cat="${c.id}">${esc(c.label)} <span class="n">${n}</span></button>`:'';}).join('')
-  +`<span class="result-count" id="count"></span>`;
+  ;
+const themeSelect=document.getElementById('themeSelect');
+themeSelect.innerHTML='<option value="all">All themes</option>'+CATS.map(c=>`<option value="${c.id}">${esc(c.label)}</option>`).join('');
+
+document.getElementById('tasks').innerHTML='<button class="chip" data-task="all">All tasks</button>'+TASKS.map(task=>`<button class="chip" data-task="${task.id}">${esc(task.label)}</button>`).join('');
 
 /* ---- Filter --------------------------------------------------------------- */
 const search=document.getElementById('search');
@@ -499,12 +435,28 @@ const noRes=document.getElementById('noRes');
 const noResQ=document.getElementById('noResQ');
 const cards=[...document.querySelectorAll('.card')];
 const cats=[...document.querySelectorAll('.cat')];
-const chips=[...document.querySelectorAll('.chip')];
-let q='',activeCat='all';
+const chips=[...document.querySelectorAll('#chips .chip')];
+const tasks=[...document.querySelectorAll('#tasks .chip')];
+let q='',activeCat='all',activeTask='all';
+function restore(){
+  const params=new URLSearchParams(location.search);
+  q=(params.get('q')||'').trim().toLowerCase();
+  activeCat=CATS.some(c=>c.id===params.get('theme'))?params.get('theme'):'all';
+  activeTask=TASKS.some(t=>t.id===params.get('task'))?params.get('task'):'all';
+  search.value=params.get('q')||'';
+}
+function save(){
+  const url=new URL(location.href);
+  [['q',search.value.trim()],['theme',activeCat==='all'?'':activeCat],['task',activeTask==='all'?'':activeTask]].forEach(([key,value])=>{if(value)url.searchParams.set(key,value);else url.searchParams.delete(key)});
+  history.replaceState(null,'',url);
+}
 function apply(){
+  themeSelect.value=activeCat;
+  chips.forEach(c=>{const selected=c.dataset.cat===activeCat;c.classList.toggle('active',selected);c.setAttribute('aria-pressed',String(selected))});
+  tasks.forEach(t=>{const selected=t.dataset.task===activeTask;t.classList.toggle('active',selected);t.setAttribute('aria-pressed',String(selected))});
   let shown=0;
   cards.forEach(c=>{
-    const ok=(activeCat==='all'||c.dataset.cat===activeCat)&&(!q||c.dataset.s.includes(q));
+    const ok=(activeCat==='all'||c.dataset.cat===activeCat)&&(activeTask==='all'||c.dataset.task===activeTask)&&(!q||c.dataset.s.includes(q));
     c.classList.toggle('hidden',!ok);if(ok)shown++;
   });
   cats.forEach(sec=>sec.classList.toggle('hidden',sec.querySelectorAll('.card:not(.hidden)').length===0));
@@ -513,6 +465,7 @@ function apply(){
   noRes.classList.toggle('hidden',shown>0);
   clearBtn.classList.toggle('show',q.length>0);
   if(kbd)kbd.classList.toggle('hidden',q.length>0);
+  save();
 }
 search.addEventListener('input',e=>{q=e.target.value.trim().toLowerCase();apply();});
 clearBtn.addEventListener('click',()=>{search.value='';q='';search.focus();apply();});
@@ -521,15 +474,20 @@ document.addEventListener('keydown',e=>{
   if(e.key==='/'&&!/^(INPUT|TEXTAREA|SELECT)$/.test(tag)){e.preventDefault();search.focus();search.select();}
   else if(e.key==='Escape'&&t===search){search.value='';q='';apply();search.blur();}
 });
-chips.forEach(ch=>ch.addEventListener('click',()=>{chips.forEach(c=>c.classList.remove('active'));ch.classList.add('active');activeCat=ch.dataset.cat;apply();}));
-apply();
+chips.forEach(ch=>ch.addEventListener('click',()=>{activeCat=ch.dataset.cat;apply();}));
+themeSelect.addEventListener('change',()=>{activeCat=themeSelect.value;apply();});
+tasks.forEach(task=>task.addEventListener('click',()=>{activeTask=task.dataset.task;apply();}));
+window.addEventListener('popstate',()=>{restore();apply()});
+restore();apply();
 
 /* ---- Nav + reveal --------------------------------------------------------- */
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
 const toggle=document.getElementById('navToggle'),links=document.getElementById('navLinks');
-toggle.addEventListener('click',()=>links.classList.toggle('open'));
-links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+toggle.addEventListener('click',()=>{const open=links.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));});
+function closeNav(){links.classList.remove('open');toggle.setAttribute('aria-expanded','false');}
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeNav));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&links.classList.contains('open')){closeNav();toggle.focus();}});
 const obs=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('vis')}),{threshold:.08,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const h=this.getAttribute('href');if(h==='#')return;e.preventDefault();const t=document.querySelector(h);if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
