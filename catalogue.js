@@ -392,3 +392,4 @@ const DASH=[
   }
 ];
 document.querySelectorAll("[data-dashboard-count]").forEach(el=>{el.textContent=DASH.length;});
+document.querySelectorAll("[data-theme-count]").forEach(el=>{el.textContent=CATS.length;});
